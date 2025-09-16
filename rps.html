@@ -5,15 +5,39 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Rock Paper Scissors Battle Supreme</title>
 		<link rel="stylesheet" href="css/style.css" />
+		<style>
+			body {
+				background-color: rgb(2, 33, 58);
+				color: rgb(106, 237, 174);
+				font-family:cursive
+			}
+
+			button {
+				color: rgb(2, 32, 88);
+				padding: 3px rgb(82, 8, 255);
+				box-shadow: 8px 8px 9px rgb(137, 7, 7);
+				font-family:cursive
+			}
+
+			.button-contanier {
+				border: 8px solid #60ffef;
+				margin: 40px;
+				padding: 20px;
+			}
+		</style>
 	</head>
 	<body>
 		<h1>Rock, Paper, Scissors</h1>
 
-		<button onclick="pickWeapon(ROCK)">Rock</button>
-		<button onclick="pickWeapon(PAPER)">Paper</button>
-		<button onclick="pickWeapon(SCISSORS)">Scissors</button>
+		<div class="button-contanier">
+			<button onclick="pickWeapon(ROCK)">Rock</button>
+			<button onclick="pickWeapon(PAPER)">Paper</button>
+			<button onclick="pickWeapon(SCISSORS)">Scissors</button>
+		</div>
 
 		<div id="aftermath">Battle Results</div>
+
+		<div id="wins">Scoreboard</div>
 
 		<!-- Link to your JavaScript file -->
 		<script src="scripts/rps/app.js"></script>

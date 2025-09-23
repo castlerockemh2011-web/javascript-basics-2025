@@ -21,6 +21,27 @@ if (aftermathElement == null) {
 	throw "aftermath is not defined! Check your HTML!!";
 }
 
+/** @type { HTMLElement } */
+//@ts-ignore checking for null below
+let winElement = document.getElementById("win-count");
+if (winElement == null) {
+	throw "win-count is not defined! Check your HTML!!";
+}
+
+/** @type { HTMLElement } */
+//@ts-ignore checking for null below
+let tieElement = document.getElementById("tie-count");
+if (tieElement == null) {
+	throw "tie-count is not defined! Check your HTML!!";
+}
+
+/** @type { HTMLElement } */
+//@ts-ignore checking for null below
+let lossElement = document.getElementById("loss-count");
+if (lossElement == null) {
+	throw "loss-count is not defined! Check your HTML!!";
+}
+
 const pickWeapon = function (weapon) {
 	let aftermathText = `Player picked ${weapon}. `;
 	console.log("Player picked", weapon);
@@ -39,12 +60,15 @@ const pickWeapon = function (weapon) {
 	if (results.isTie) {
 		tieCount = tieCount + 1;
 		winner = results.description;
+		tieElement.textContent = tieCount.toString();
 	} else if (results.playerWon) {
 		winCount += 1;
 		winner = "Player wins! W00t!!";
+		winElement.textContent = winCount.toString();
 	} else {
 		lossCount++;
 		winner = "Computer wins! BEEP BOOP BEEP!!";
+		lossElement.textContent = lossCount.toString();
 	}
 
 	aftermathText += `${winner} Because ${results.description}. Current tally: ties [${tieCount}] wins [${winCount}] losses [${lossCount}]`;

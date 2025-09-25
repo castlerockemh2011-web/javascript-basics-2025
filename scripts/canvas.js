@@ -14,19 +14,44 @@ const WIDTH = 800;
 CANVAS.height = HEIGHT;
 CANVAS.width = WIDTH;
 
-CTX.fillStyle = "black";
-CTX.fillRect(0, 0, WIDTH, HEIGHT);
-
-CTX.fillStyle = "red";
-CTX.fillRect(50, 0, WIDTH, HEIGHT);
-
-CTX.fillStyle = "purple";
-CTX.arc(WIDTH / 2, HEIGHT / 2, 100, 0, 2 * Math.PI);
-CTX.fill();
-
 let currentTimestamp = 0;
-let x = 0;
-let y = 0;
+
+let box = {
+	x: 0,
+	y: 0,
+	xDirection: 1,
+	yDirection: 1,
+	width: 10,
+	draw: function () {
+		CTX.fillStyle = "black";
+		CTX.fillRect(this.x, this.y, this.width, this.width);
+	},
+	update: function () {
+		let top = this.y;
+		let bottom = this.y + this.width;
+		let left = this.x;
+		let right = this.x + this.width;
+
+		if (top < 0) {
+			// colliding with top
+			this.yDirection = 1;
+		} else if (bottom > HEIGHT) {
+			// colliding with bottom
+			this.yDirection = -1;
+		}
+
+		if (left < 0) {
+			// colliding with left
+			this.xDirection = 1;
+		} else if (right > WIDTH) {
+			// colliding with right
+			this.xDirection = -1;
+		}
+
+		this.x += this.xDirection;
+		this.y += this.yDirection;
+	},
+};
 
 function drawLoop(timestamp) {
 	CTX.clearRect(0, 0, WIDTH, HEIGHT);
@@ -34,13 +59,8 @@ function drawLoop(timestamp) {
 	let elapsedTime = timestamp - currentTimestamp;
 	currentTimestamp = timestamp;
 
-	CTX.fillStyle = "yellow";
-	CTX.fillRect(x, y, 10, 10);
-
-	// x = x + 1;
-	// x += 1;
-	x++; // add 1 to the current value of x
-	y++;
+	box.draw();
+	box.update();
 
 	// console.log(elapsedTime);
 	requestAnimationFrame(drawLoop);

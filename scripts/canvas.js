@@ -19,6 +19,7 @@ let currentTimestamp = 0;
 let box = {
 	x: 0,
 	y: 0,
+	speed: 10,
 	xDirection: 1,
 	yDirection: 1,
 	width: 10,
@@ -48,8 +49,8 @@ let box = {
 			this.xDirection = -1;
 		}
 
-		this.x += this.xDirection;
-		this.y += this.yDirection;
+		this.x += this.xDirection * this.speed;
+		this.y += this.yDirection * this.speed;
 	},
 };
 

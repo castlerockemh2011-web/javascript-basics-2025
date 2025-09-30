@@ -60,83 +60,10 @@ class Box {
 	}
 }
 
+let box1 = new Box(50, 50, "cyan");
+let box2 = new Box(100, 200, "blue");
+
 let currentTimestamp = 0;
-
-let box = {
-	x: 0,
-	y: 0,
-	speed: 10,
-	xDirection: 1,
-	yDirection: 1,
-	width: 50,
-	draw: function () {
-		CTX.fillStyle = "black";
-		CTX.fillRect(this.x, this.y, this.width, this.width);
-	},
-	update: function () {
-		let top = this.y;
-		let bottom = this.y + this.width;
-		let left = this.x;
-		let right = this.x + this.width;
-
-		if (top < 0) {
-			// colliding with top
-			this.yDirection = 1;
-		} else if (bottom > HEIGHT) {
-			// colliding with bottom
-			this.yDirection = -1;
-		}
-
-		if (left < 0) {
-			// colliding with left
-			this.xDirection = 1;
-		} else if (right > WIDTH) {
-			// colliding with right
-			this.xDirection = -1;
-		}
-
-		this.x += this.xDirection * this.speed;
-		this.y += this.yDirection * this.speed;
-	},
-};
-
-let box2 = {
-	x: 100,
-	y: 50,
-	speed: 15,
-	xDirection: -1,
-	yDirection: 1,
-	width: 50,
-	draw: function () {
-		CTX.fillStyle = "purple";
-		CTX.fillRect(this.x, this.y, this.width, this.width);
-	},
-	update: function () {
-		let top = this.y;
-		let bottom = this.y + this.width;
-		let left = this.x;
-		let right = this.x + this.width;
-
-		if (top < 0) {
-			// colliding with top
-			this.yDirection = 1;
-		} else if (bottom > HEIGHT) {
-			// colliding with bottom
-			this.yDirection = -1;
-		}
-
-		if (left < 0) {
-			// colliding with left
-			this.xDirection = 1;
-		} else if (right > WIDTH) {
-			// colliding with right
-			this.xDirection = -1;
-		}
-
-		this.x += this.xDirection * this.speed;
-		this.y += this.yDirection * this.speed;
-	},
-};
 
 function drawLoop(timestamp) {
 	CTX.clearRect(0, 0, WIDTH, HEIGHT);
@@ -144,9 +71,8 @@ function drawLoop(timestamp) {
 	let elapsedTime = timestamp - currentTimestamp;
 	currentTimestamp = timestamp;
 
-	box.draw();
-	box.update();
-
+	box1.draw();
+	box1.update();
 	box2.draw();
 	box2.update();
 

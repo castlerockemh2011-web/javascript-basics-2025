@@ -60,21 +60,28 @@ class Box {
 	}
 }
 
-let box1 = new Box(50, 50, "cyan");
-let box2 = new Box(100, 200, "blue");
+/** @type { Box[] } */
+let boxes = [];
+
+for (let i = 0; i <= 10000; i++) {
+	let box = new Box(WIDTH / 2, HEIGHT / 2, "black");
+	box.width = 2;
+	box.height = 10;
+	box.x = Math.random() * (WIDTH - 100);
+	box.y = Math.random() * (HEIGHT - 100);
+	box.speed = Math.random() * 5 + 5;
+	boxes.push(box);
+}
 
 let currentTimestamp = 0;
 
 function drawLoop(timestamp) {
 	CTX.clearRect(0, 0, WIDTH, HEIGHT);
 
-	let elapsedTime = timestamp - currentTimestamp;
-	currentTimestamp = timestamp;
-
-	box1.draw();
-	box1.update();
-	box2.draw();
-	box2.update();
+	boxes.forEach((b) => {
+		b.draw();
+		b.update();
+	});
 
 	// console.log(elapsedTime);
 	requestAnimationFrame(drawLoop);
